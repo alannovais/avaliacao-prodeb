@@ -25,17 +25,17 @@ public class MatchesResouce {
 	MatchesRepository matchesRepository;
 	
 	@GetMapping("/matches")
-	public List<Matches> listUsers(){
+	public List<Matches> listMatches(){
 		return matchesRepository.findAll();
 	}
 	
 	@GetMapping("/matches/{id}")
-	public Matches listUsers(@PathVariable(value="id") long id){
+	public Matches listMatche(@PathVariable(value="id") long id){
 		return matchesRepository.findById(id);
 	}
 	
-	@PostMapping("/matche")
-	public Matches SaveUser(@RequestBody Matches matche){
+	@PostMapping("/matches")
+	public Matches SaveMatches(@RequestBody Matches matche){
 		return matchesRepository.save(matche);
 	}
 }

@@ -10,24 +10,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.pelada_project.peladaproject.models.Users;
+import br.com.pelada_project.peladaproject.repository.LoginRepository;
 import br.com.pelada_project.peladaproject.repository.UserRepository;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping(value="/api")
+@RequestMapping(value = "/api")
 public class LoginResource {
-	
+
 	@Autowired
-	UserRepository logRepository;
-	
+	LoginRepository loginRepository;
+
 	@GetMapping("/login/{username}/{password}")
-	public boolean listUsers(@PathVariable(value="username") String username,
-			@PathVariable(value="password") String password) {
-		Users users = new Users();
-		users.setAlias_name(username);
-		users.setPassword(password);
-		//return logRepository.findOne(users);
-		return true;
+	public Users listUsers(@PathVariable("username") String username, @PathVariable("password") String password) {
+		return loginRepository.findByLogin(username, password);
 	}
-	
+
 }
